@@ -1,2 +1,10 @@
 /* Theme Name: Reseach Materials */
 
+body{
+	background: red;
+}
+
+h1 {
+font-family: Helvetica;
+color: blue;
+}

@@ -1,4 +1,5 @@
 
+<?php get_header();?>
 
 <?php 
 	$sources_query = new WP_Query([
@@ -34,3 +35,5 @@
 	</div>
 
 <?php endif; ?>
+
+<?php get_footer(); ?>
