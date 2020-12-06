@@ -36,4 +36,55 @@
 
 <?php endif; ?>
 
+
+
+<?php 
+	$sources_query = new WP_Query([
+		'post_type' => 'timeline',
+		'post_per_page' => -1,
+	]);
+?>
+
+<?php if ($sources_query->have_posts()): ?>
+	<div class="timelines">
+		<?php while($sources_query->have_posts()): $sources_query->the_post(); ?>
+			
+			<div class="timeline">
+				<div class='date'><?php echo get_the_date(); ?></div>
+				<h1><?php the_title(); ?></h1>
+			</div>
+
+		<?php endwhile ?>
+	</div>
+<?php endif; ?>
+
+
+
+
+<?php 
+	$sources_query = new WP_Query([
+		'post_type' => 'map_layer',
+		'post_per_page' => -1,
+	]);
+?>
+
+
+<?php if ($sources_query->have_posts()): ?>
+	<div class="map_layers">
+		<?php while($sources_query->have_posts()): $sources_query->the_post(); ?>
+			
+			<div class="map_layer">
+				<div class='date'><?php echo get_the_date(); ?></div>
+				<h1><?php the_title(); ?></h1>
+			</div>
+
+		<?php endwhile ?>
+	</div>
+<?php endif; ?>
+
+
+
+
+
+
 <?php get_footer(); ?>
