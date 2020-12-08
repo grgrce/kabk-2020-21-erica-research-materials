@@ -46,7 +46,7 @@
 ?>
 
 <?php if ($sources_query->have_posts()): ?>
-	<div class="timelines">
+	<div class="timeline">
 		<?php while($sources_query->have_posts()): $sources_query->the_post(); ?>
 			
 			<div class="timeline">
@@ -76,6 +76,22 @@
 			<div class="map_layer">
 				<div class='date'><?php echo get_the_date(); ?></div>
 				<h1><?php the_title(); ?></h1>
+				
+				<?php if (have_rows('map')): ?>
+					<div class="map">
+						<?php while (have_rows('map')): the_row(); ?>
+
+							<?php 
+								$image = get_sub_field('map_image');
+							?>
+
+							<img src="<?php echo $image['sizes']['medium']; ?>"/>
+
+
+						<?php endwhile; ?>
+					</div>
+				<?php endif; ?>
+
 			</div>
 
 		<?php endwhile ?>
