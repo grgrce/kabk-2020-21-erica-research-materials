@@ -2,15 +2,15 @@
 <?php get_header();?>
 
 <?php 
-	$sources_query = new WP_Query([
-		'post_type' => 'source',
+	$timeline_query = new WP_Query([
+		'post_type' => 'timeline',
 		'post_per_page' => -1,
 	]);
 ?>
 
-<?php if ($sources_query->have_posts()): ?>
+<?php if ($timeline_query->have_posts()): ?>
 	<div class="sources">
-		<?php while($sources_query->have_posts()): $sources_query->the_post(); ?>
+		<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>
 			
 			<div class="source">
 				<div class='date'><?php echo get_the_date(); ?></div>
@@ -39,15 +39,15 @@
 
 
 <?php 
-	$sources_query = new WP_Query([
+	$timeline_query = new WP_Query([
 		'post_type' => 'timeline',
 		'post_per_page' => -1,
 	]);
 ?>
 
-<?php if ($sources_query->have_posts()): ?>
+<?php if ($timeline_query->have_posts()): ?>
 	<div class="timeline">
-		<?php while($sources_query->have_posts()): $sources_query->the_post(); ?>
+		<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>
 			
 			<div class="timeline">
 				<div class='date'><?php echo get_the_date(); ?></div>
@@ -62,16 +62,16 @@
 
 
 <?php 
-	$sources_query = new WP_Query([
+	$timeline_query = new WP_Query([
 		'post_type' => 'map_layer',
 		'post_per_page' => -1,
 	]);
 ?>
 
 
-<?php if ($sources_query->have_posts()): ?>
+<?php if ($timeline_query->have_posts()): ?>
 	<div class="map_layers">
-		<?php while($sources_query->have_posts()): $sources_query->the_post(); ?>
+		<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>
 			
 			<div class="map_layer">
 				<div class='date'><?php echo get_the_date(); ?></div>

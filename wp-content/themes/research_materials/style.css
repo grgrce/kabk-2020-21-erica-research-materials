@@ -1,10 +1,18 @@
 /* Theme Name: Reseach Materials */
 
-body{
+body {
 	background: yellowgreen;
+	font-family: sans-serif;
 }
 
-h1 {
-font-family: Helvetica;
-color: black;
+* {
+	box-sizing: border-box;
+}
+
+header {
+	border: 1px solid #000;
+}
+
+main {
+	border: 1px solid #000;	
 }
