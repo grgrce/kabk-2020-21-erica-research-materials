@@ -45,14 +45,16 @@ main {
 
 #articles {
 	padding: 20px;
+	height: 500px;
+	overflow: auto;
 }
 
 #articles div:nth-child(1) {
-	display: block;
+	/* display: block; */
 }
 
 #articles div {
-	display: none;
+	/* display: none; */
 
 }
 

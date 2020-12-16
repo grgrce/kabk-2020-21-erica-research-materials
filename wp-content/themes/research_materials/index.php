@@ -84,9 +84,9 @@
 <div id="timeline">
 
 	<!-- Loop over all the timeline posts AGAIN and put them in the timeline section -->
-	<input type="range" start="<?php echo $first_timestamp;?>" end="<?php echo $last_timestamp;?>" name="">
-	<?php if ($timeline_query->have_posts()): ?>
-		<div class="bars">
+	<input id="range-slider" type="range" start="<?php echo $first_timestamp;?>" end="<?php echo $last_timestamp;?>" name="">
+	<div class="bars">
+		<?php if ($timeline_query->have_posts()): ?>
 			<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>	
 				<?php 
 
@@ -97,17 +97,41 @@
 					$percentage = ($entry_difference / $difference) * 100;
 
 					// Add the country categories as a class to each bar
-					$classes = ['bar'];
+					$classes = ['bar', 'article-bar'];
 					$type_terms = wp_get_post_terms ($post->ID, 'country');
 					foreach($type_terms as $term):					
 						$classes[]=$term->slug;
 					endforeach;
 
 				?>			
-				<div class="<?php echo implode(' ', $classes);?>" style="left: <?php echo $percentage;?>%" data-timelinepost="<?php echo $post->ID;?>"></div>
+				<div class="<?php echo implode(' ', $classes);?>" style="left: <?php echo $percentage;?>%" data-type="article" data-timelinepost="<?php echo $post->ID;?>" data-percentage="<?php echo $percentage; ?>"></div>
 			<?php endwhile ?>
-		</div>
-	<?php endif; ?>	
+		<?php endif; ?>	
+
+		<?php if ($maps_query->have_posts()): ?>
+		
+			<?php while($maps_query->have_posts()): $maps_query->the_post(); ?>	
+				<?php 
+
+					// calculate the x position of the bar as a percentage
+
+					$timestamp = get_post_timestamp();						
+					$entry_difference = $timestamp - $first_timestamp;
+					$percentage = ($entry_difference / $difference) * 100;
+
+					// Add the country categories as a class to each bar
+					$classes = ['bar', 'article-bar'];
+					$type_terms = wp_get_post_terms ($post->ID, 'country');
+					foreach($type_terms as $term):					
+						$classes[]=$term->slug;
+					endforeach;
+
+				?>			
+				<div class="<?php echo implode(' ', $classes);?>" style="left: <?php echo $percentage;?>%" data-type="maplayer" data-timelinepost="<?php echo $post->ID;?>" data-percentage="<?php echo $percentage; ?>"></div>
+			<?php endwhile ?>
+			
+		<?php endif; ?>	
+	</div>
 </div>
 
 <?php get_footer(); ?>
