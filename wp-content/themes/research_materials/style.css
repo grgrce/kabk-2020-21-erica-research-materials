@@ -1,10 +1,161 @@
 /* Theme Name: Reseach Materials */
 
-body{
-	background: yellowgreen;
+body {
+	background: #FFF;
+	font-family: sans-serif;
+	overflow: hidden;
+	height: 100vh;
+	display: flex;
+	flex-flow: column nowrap;
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+header {
+	padding: 20px 20px 0 20px;
 }
 
 h1 {
-font-family: Helvetica;
-color: black;
+	margin: 0;
 }
+
+main {
+
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	flex-grow: 1;
+	grid-gap: 20px;
+	padding: 20px;
+}
+
+html {
+	--azerbaijan: green;
+	--armenia: red;
+}
+
+#maps {
+	border: 1px solid #000;
+	position: relative;
+	border-radius: 20px;
+
+}
+
+#timeline {
+	
+	height: 140px;
+	grid-column: span 2;
+	padding: 0 20px 20px 20px;
+	position: relative;
+}
+
+#timeline input {
+	position: absolute;
+	width: calc(100% - 40px);
+	display: block;
+	height: calc(100% - 20px);
+	margin: 0;
+}
+
+#articles {
+	padding: 20px;
+	overflow: auto;
+	border: 1px solid #000;
+	border-radius: 20px;
+}
+
+#articles div:nth-child(1) {
+	/* display: block; */
+}
+
+#articles div {
+	/* display: none; */
+
+}
+
+.map-layer {
+	display: none;
+}
+
+
+.map-layer {
+	position: absolute;
+	width: 50%;
+}
+.map-layer img {
+	width: 100%;
+}
+
+.map-layer.armenia {
+	position: absolute;
+	left: 50%;
+}
+
+.source {
+	display: none;
+}
+.visible {
+	display: block;	
+}
+
+
+.bars {
+	border: 1px solid #000;	
+	border-radius: 20px;
+	overflow: hidden;
+	position: relative;
+	height: 100%;
+	pointer-events: none;
+}
+
+.bars div {
+	height: 50%;
+	position: absolute;
+	width: 0px;
+	top: 25%;
+	margin-left: -2px;
+	border-right: 4px solid #000;
+}
+
+.tag {
+	font-weight: bold;
+}
+
+.tag.azerbaijan {
+	color: var(--azerbaijan);
+}
+
+.tag.armenia {
+	color: var(--armenia);
+}
+
+
+
+#timeline div.armenia {
+	top: 0;
+	border-color: var(--armenia);
+}
+
+.bar[data-type='maplayer']{
+	border-right-style: dashed;
+}
+
+div.none {
+
+}
+
+#timeline div.azerbaijan {
+	border-color: var(--azerbaijan);
+	top: 50%;
+}
+
+
+
+
+
+
+
+
+
