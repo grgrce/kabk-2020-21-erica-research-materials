@@ -5,6 +5,7 @@
 	
 	$maps_query = new WP_Query([
 		'post_type' => 'map_layer',
+		'order' => 'ASC',
 		'post_per_page' => -1,
 	]);
 
@@ -15,16 +16,26 @@
 		'post_per_page' => -1,
 	]);
 
+	$maps_timeline_query = new WP_Query([
+		'post_type' => ['timleine', 'map_layer'],
+		'order' => 'ASC',
+		'post_per_page' => -1,
+		'meta_key' => 'date',
+		'orderby' => 'meta_value_num',
+		'order' => 'ASC'
+	]);
+
+
 	// get the first and last timeline entries
-	$first_article = $timeline_query->posts[0];
-	$num_articles = count($timeline_query->posts);
-	$last_article = $timeline_query->posts[$num_articles-1];
+	$first_entry = $maps_timeline_query->posts[0];
+	$num_entries = count($maps_timeline_query->posts);
+	$last_entry = $maps_timeline_query->posts[$num_entries-1];
 
 
 	// Here, we get the first and last timestamps so that we know the range for the slider
 	// we are going to use UNIX timestamps, which you can read about here! https://en.wikipedia.org/wiki/Unix_time
-	$first_timestamp = get_post_timestamp($first_article->ID);
-	$last_timestamp = get_post_timestamp($last_article->ID);
+	$first_timestamp = strtotime(get_field('date', $first_entry->ID));
+	$last_timestamp = strtotime(get_field('date', $last_entry->ID));
 
 	// calculate the duration of the timeline
 	$difference = $last_timestamp - $first_timestamp;
@@ -44,9 +55,6 @@
 					}							
 				?>
 				<div class="<?php echo implode(' ', $classes);?>" data-timelinepost="<?php echo $post->ID;?>">
-
-				
-
 					<div>
 						<img src="<?php echo get_field('map_image')['sizes']['large'];?>"/>
 					</div>
@@ -97,7 +105,8 @@
 
 					// calculate the x position of the bar as a percentage
 
-					$timestamp = get_post_timestamp();						
+					$timestamp = strtotime(get_field('date'));
+
 					$entry_difference = $timestamp - $first_timestamp;
 					$percentage = ($entry_difference / $difference) * 100;
 
@@ -120,12 +129,12 @@
 
 					// calculate the x position of the bar as a percentage
 
-					$timestamp = get_post_timestamp();						
+					$timestamp = strtotime(get_field('date'));
 					$entry_difference = $timestamp - $first_timestamp;
 					$percentage = ($entry_difference / $difference) * 100;
 
 					// Add the country categories as a class to each bar
-					$classes = ['bar', 'article-bar'];
+					$classes = ['bar', 'maplayer-bar'];
 					$type_terms = wp_get_post_terms ($post->ID, 'country');
 					foreach($type_terms as $term):					
 						$classes[]=$term->slug;

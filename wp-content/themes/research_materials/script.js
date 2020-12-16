@@ -23,8 +23,7 @@ function update(sliderVal) {
 				nearestArticleBar = bar;
 			}
 		}
-		if (bar.dataset.type === 'maplayer') {
-			
+		if (bar.dataset.type === 'maplayer') {	
 			if (!nearestMapLayerBar || dist < nearestMapLayerDist && sliderVal > percentage) {
 				nearestMapLayerDist = dist;
 				nearestMapLayerBar = bar;
@@ -39,9 +38,6 @@ function update(sliderVal) {
 
 	const article = document.querySelector('.source[data-timelinepost="' + timelinepostArticle + '"');
 	article.classList.add('visible');
-
-	console.log(timelinepostArticle);
-
 
 	const timelinepostMapLayer = parseInt(nearestMapLayerBar.dataset.timelinepost);
 	document.querySelectorAll('.map-layer').forEach(el => {
