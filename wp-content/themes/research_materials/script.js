@@ -11,7 +11,8 @@ window.addEventListener('DOMContentLoaded', e => {
 
 function update(sliderVal) {
 	let nearestArticleBar, nearestArticleDist;
-	let nearestMapLayerBar, nearestMapLayerDist;
+	let nearestArmeniaMapLayerBar, nearestArmeniaMapLayerDist;
+	let nearestAzerbaijanMapLayerBar, nearestAzerbaijanMapLayerDist;
 
 	document.querySelectorAll('.bar').forEach(bar => {
 		const percentage = Math.floor(parseFloat(bar.dataset.percentage));
@@ -23,10 +24,17 @@ function update(sliderVal) {
 				nearestArticleBar = bar;
 			}
 		}
-		if (bar.dataset.type === 'maplayer') {	
-			if (!nearestMapLayerBar || dist < nearestMapLayerDist && sliderVal > percentage) {
-				nearestMapLayerDist = dist;
-				nearestMapLayerBar = bar;
+		if (bar.dataset.type === 'maplayer' && bar.classList.contains('armenia')) {	
+			if (!nearestArmeniaMapLayerBar || dist < nearestArmeniaMapLayerDist && sliderVal > percentage) {
+				nearestArmeniaMapLayerDist = dist;
+				nearestArmeniaMapLayerBar = bar;
+			}			
+		}
+
+		if (bar.dataset.type === 'maplayer' && bar.classList.contains('azerbaijan')) {	
+			if (!nearestAzerbaijanMapLayerBar || dist < nearestAzerbaijanMapLayerDist && sliderVal > percentage) {
+				nearestAzerbaijanMapLayerDist = dist;
+				nearestAzerbaijanMapLayerBar = bar;
 			}			
 		}
 	});
@@ -39,14 +47,26 @@ function update(sliderVal) {
 	const article = document.querySelector('.source[data-timelinepost="' + timelinepostArticle + '"');
 	article.classList.add('visible');
 
-	const timelinepostMapLayer = parseInt(nearestMapLayerBar.dataset.timelinepost);
-	document.querySelectorAll('.map-layer').forEach(el => {
+	
+
+
+
+	const timelinepostArmeniaMapLayer = parseInt(nearestArmeniaMapLayerBar.dataset.timelinepost);
+	document.querySelectorAll('.map-layer.armenia').forEach(el => {
 		el.classList.remove('visible');
 	});
 	
+	const armeniaMapLayer = document.querySelector('.map-layer[data-timelinepost="' + timelinepostArmeniaMapLayer + '"');
+	armeniaMapLayer.classList.add('visible');
 
-	const mapLayer = document.querySelector('.map-layer[data-timelinepost="' + timelinepostMapLayer + '"');
-	mapLayer.classList.add('visible');
+
+	const timelinepostAzerbaijanMapLayer = parseInt(nearestAzerbaijanMapLayerBar.dataset.timelinepost);
+	document.querySelectorAll('.map-layer.azerbaijan').forEach(el => {
+		el.classList.remove('visible');
+	});
+	
+	const azerbaijanMapLayer = document.querySelector('.map-layer[data-timelinepost="' + timelinepostAzerbaijanMapLayer + '"');
+	azerbaijanMapLayer.classList.add('visible');
 
 
 }
