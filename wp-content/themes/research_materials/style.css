@@ -113,10 +113,10 @@ html {
 .bars div {
 	height: 50%;
 	position: absolute;
-	width: 4px;
+	width: 0px;
 	top: 25%;
-	background-color: #000;
 	margin-left: -2px;
+	border-right: 4px solid #000;
 }
 
 .tag {
@@ -132,19 +132,22 @@ html {
 }
 
 
+
 #timeline div.armenia {
 	top: 0;
-	background: var(--armenia);
+	border-color: var(--armenia);
 }
 
-
+.bar[data-type='maplayer']{
+	border-right-style: dashed;
+}
 
 div.none {
 
 }
 
 #timeline div.azerbaijan {
-	background: var(--azerbaijan);
+	border-color: var(--azerbaijan);
 	top: 50%;
 }
 

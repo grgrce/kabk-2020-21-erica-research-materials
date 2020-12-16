@@ -43,7 +43,7 @@
 						$classes[]=$term->slug;
 					}							
 				?>
-				<div class="<?php echo implode(' ', $classes);?>" data-type="maplayer" data-timelinepost="<?php echo $post->ID;?>">
+				<div class="<?php echo implode(' ', $classes);?>" data-timelinepost="<?php echo $post->ID;?>">
 
 				
 
