@@ -3,6 +3,11 @@
 body {
 	background: yellowgreen;
 	font-family: sans-serif;
+	overflow: hidden;
+	height: 100vh;
+	display: flex;
+	flex-flow: column nowrap;
+	margin: 0;
 }
 
 * {
@@ -15,4 +20,67 @@ header {
 
 main {
 	border: 1px solid #000;	
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	flex-grow: 1;
+}
+
+#maps {
+	border-right: 1px solid #000;
+	padding: 20px;
+}
+
+#timeline {
+	border: 1px solid #000;	
+	height: 140px;
+	grid-column: span 2;
+	padding: 10px 20px;
+}
+
+#timeline input {
+	position: absolute;
+	width: 100%;
+}
+
+#articles {
+	padding: 20px;
+}
+
+#articles div:nth-child(1) {
+	display: block;
+}
+
+#articles div {
+	display: none;
+
+}
+
+
+.bars {
+	position: relative;
+	height: 100%;
+	pointer-events: none;
+}
+
+.bars div {
+	height: 50%;
+	position: absolute;
+	width: 4px;
+	top: 25%;
+	background-color: #000;
+}
+
+div.armenia {
+	top: 0;
+	background: red;
+}
+
+div.none {
+
+}
+
+div.azerbaijan {
+	background: green;
+	top: 50%;
 }

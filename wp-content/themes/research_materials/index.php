@@ -2,105 +2,112 @@
 <?php get_header();?>
 
 <?php 
-	$timeline_query = new WP_Query([
-		'post_type' => 'timeline',
-		'post_per_page' => -1,
-	]);
-?>
-
-<?php if ($timeline_query->have_posts()): ?>
-	<div class="sources">
-		<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>
-			
-			<div class="source">
-				<div class='date'><?php echo get_the_date(); ?></div>
-				<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-
-				<div>
-					<?php $type_terms = wp_get_post_terms ($post->ID, 'source_type'); ?>
-					<?php foreach($type_terms as $term): ?>
-						<span class="tag"><?php echo $term->name; ?></span>
-					<?php endforeach; ?>
-				</div>
-
-				<div>
-					<?php the_field('author_name'); ?>
-				</div>
-
-			</div>
-
-			<hr />
-
-		<?php endwhile ?>
-	</div>
-
-<?php endif; ?>
-
-
-
-<?php 
-	$timeline_query = new WP_Query([
-		'post_type' => 'timeline',
-		'post_per_page' => -1,
-	]);
-?>
-
-<?php if ($timeline_query->have_posts()): ?>
-	<div class="timeline">
-		<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>
-			
-			<div class="timeline">
-				<div class='date'><?php echo get_the_date(); ?></div>
-				<h1><?php the_title(); ?></h1>
-			</div>
-
-		<?php endwhile ?>
-	</div>
-<?php endif; ?>
-
-
-
-
-<?php 
-	$timeline_query = new WP_Query([
+	
+	$maps_query = new WP_Query([
 		'post_type' => 'map_layer',
 		'post_per_page' => -1,
 	]);
+
+	// SELECT all the timeline posts from start to end (ascending)
+	$timeline_query = new WP_Query([
+		'post_type' => 'timeline',
+		'order' => 'ASC',
+		'post_per_page' => -1,
+	]);
+
+	// get the first and last timeline entries
+	$first_article = $timeline_query->posts[0];
+	$num_articles = count($timeline_query->posts);
+	$last_article = $timeline_query->posts[$num_articles-1];
+
+
+	// Here, we get the first and last timestamps so that we know the range for the slider
+	// we are going to use UNIX timestamps, which you can read about here! https://en.wikipedia.org/wiki/Unix_time
+	$first_timestamp = get_post_timestamp($first_article->ID);
+	$last_timestamp = get_post_timestamp($last_article->ID);
+
+	// calculate the duration of the timeline
+	$difference = $last_timestamp - $first_timestamp;
 ?>
 
+<main>
+	<section id="maps">
 
-<?php if ($timeline_query->have_posts()): ?>
-	<div class="map_layers">
-		<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>
-			
-			<div class="map_layer">
-				<div class='date'><?php echo get_the_date(); ?></div>
-				<h1><?php the_title(); ?></h1>
+		<?php if ($maps_query->have_posts()): ?>
+			<?php while($maps_query->have_posts()): $maps_query->the_post(); ?>
 				
-				<?php if (have_rows('map')): ?>
-					<div class="map">
-						<?php while (have_rows('map')): the_row(); ?>
+				<div class="map-layer" data-timelinepost="<?php echo $post->ID;?>">
 
-							<?php 
-								$image = get_sub_field('map_image');
-							?>
-
-							<img src="<?php echo $image['sizes']['medium']; ?>"/>
-
-
-						<?php endwhile; ?>
+					<div>
+						<?php $type_terms = wp_get_post_terms ($post->ID, 'country'); ?>
+						<?php foreach($type_terms as $term): ?>						
+							<span class="tag"><?php echo $term->name; ?></span>
+						<?php endforeach; ?>
 					</div>
-				<?php endif; ?>
-
-			</div>
-
-		<?php endwhile ?>
-	</div>
-<?php endif; ?>
-
+					<div>
+						<?php the_field('map_image');?>
+					</div>
+				</div>
+			<?php endwhile ?>
+		<?php endif; ?>
 
 
+	</section>
+	<section id="articles">
+		
+		<!-- Loop over all the timeline posts and put them in the article section -->
+		<?php if ($timeline_query->have_posts()): ?>
+
+			<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>
+				
+				<div class="source" data-timelinepost="<?php echo $post->ID;?>">
+					<div class='date'><?php echo get_field('date'); ?></div>
+					<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+					<?php the_content();?>
+					<div>
+						<?php $type_terms = wp_get_post_terms ($post->ID, 'country'); ?>
+						<?php foreach($type_terms as $term): ?>						
+							<span class="tag"><?php echo $term->name; ?></span>
+						<?php endforeach; ?>
+					</div>
+
+				</div>
+
+			<?php endwhile ?>
 
 
+		<?php endif; ?>
+	</section>
+	
+</main>
+
+<div id="timeline">
+
+	<!-- Loop over all the timeline posts AGAIN and put them in the timeline section -->
+	<input type="range" start="<?php echo $first_timestamp;?>" end="<?php echo $last_timestamp;?>" name="">
+	<?php if ($timeline_query->have_posts()): ?>
+		<div class="bars">
+			<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>	
+				<?php 
+
+					// calculate the x position of the bar as a percentage
+
+					$timestamp = get_post_timestamp();						
+					$entry_difference = $timestamp - $first_timestamp;
+					$percentage = ($entry_difference / $difference) * 100;
+
+					// Add the country categories as a class to each bar
+					$classes = ['bar'];
+					$type_terms = wp_get_post_terms ($post->ID, 'country');
+					foreach($type_terms as $term):					
+						$classes[]=$term->slug;
+					endforeach;
+
+				?>			
+				<div class="<?php echo implode(' ', $classes);?>" style="left: <?php echo $percentage;?>%" data-timelinepost="<?php echo $post->ID;?>"></div>
+			<?php endwhile ?>
+		</div>
+	<?php endif; ?>	
+</div>
 
 <?php get_footer(); ?>

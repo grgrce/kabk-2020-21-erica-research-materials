@@ -1,1 +1,5 @@
-console.log('!');
+window.addEventListener('DOMContentLoaded', e=>{
+
+	
+
+});

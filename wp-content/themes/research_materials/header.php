@@ -9,9 +9,7 @@
 <body>
 
 
-<header></header>
+<header>
+	<h1>Nagorno Karabakh</h1>
+</header>
 
-<main>
-	<section></section>
-
-</main>
