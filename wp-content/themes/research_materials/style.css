@@ -1,7 +1,7 @@
 /* Theme Name: Reseach Materials */
 
 body {
-	background: yellowgreen;
+	background: #FFF;
 	font-family: sans-serif;
 	overflow: hidden;
 	height: 100vh;
@@ -15,38 +15,55 @@ body {
 }
 
 header {
-	border: 1px solid #000;
+	padding: 20px 20px 0 20px;
+}
+
+h1 {
+	margin: 0;
 }
 
 main {
-	border: 1px solid #000;	
 
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 2fr 1fr;
 	flex-grow: 1;
-}
-
-#maps {
-	border-right: 1px solid #000;
+	grid-gap: 20px;
 	padding: 20px;
 }
 
+html {
+	--azerbaijan: green;
+	--armenia: red;
+}
+
+#maps {
+	border: 1px solid #000;
+	position: relative;
+	border-radius: 20px;
+
+}
+
 #timeline {
-	border: 1px solid #000;	
+	
 	height: 140px;
 	grid-column: span 2;
-	padding: 10px 20px;
+	padding: 0 20px 20px 20px;
+	position: relative;
 }
 
 #timeline input {
 	position: absolute;
-	width: 100%;
+	width: calc(100% - 40px);
+	display: block;
+	height: calc(100% - 20px);
+	margin: 0;
 }
 
 #articles {
 	padding: 20px;
-	height: 500px;
 	overflow: auto;
+	border: 1px solid #000;
+	border-radius: 20px;
 }
 
 #articles div:nth-child(1) {
@@ -58,8 +75,36 @@ main {
 
 }
 
+.map-layer {
+	display: none;
+}
+
+
+.map-layer {
+	position: absolute;
+	width: 50%;
+}
+.map-layer img {
+	width: 100%;
+}
+
+.map-layer.armenia {
+	position: absolute;
+	left: 50%;
+}
+
+.source {
+	display: none;
+}
+.visible {
+	display: block;	
+}
+
 
 .bars {
+	border: 1px solid #000;	
+	border-radius: 20px;
+	overflow: hidden;
 	position: relative;
 	height: 100%;
 	pointer-events: none;
@@ -71,18 +116,43 @@ main {
 	width: 4px;
 	top: 25%;
 	background-color: #000;
+	margin-left: -2px;
 }
 
-div.armenia {
-	top: 0;
-	background: red;
+.tag {
+	font-weight: bold;
 }
+
+.tag.azerbaijan {
+	color: var(--azerbaijan);
+}
+
+.tag.armenia {
+	color: var(--armenia);
+}
+
+
+#timeline div.armenia {
+	top: 0;
+	background: var(--armenia);
+}
+
+
 
 div.none {
 
 }
 
-div.azerbaijan {
-	background: green;
+#timeline div.azerbaijan {
+	background: var(--azerbaijan);
 	top: 50%;
 }
+
+
+
+
+
+
+
+
+

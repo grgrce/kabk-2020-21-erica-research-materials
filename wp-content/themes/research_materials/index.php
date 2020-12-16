@@ -35,17 +35,20 @@
 
 		<?php if ($maps_query->have_posts()): ?>
 			<?php while($maps_query->have_posts()): $maps_query->the_post(); ?>
+				<?php
+
+					$classes = array('map-layer');
+					$type_terms = wp_get_post_terms ($post->ID, 'country');
+					foreach($type_terms as $term){
+						$classes[]=$term->slug;
+					}							
+				?>
+				<div class="<?php echo implode(' ', $classes);?>" data-type="maplayer" data-timelinepost="<?php echo $post->ID;?>">
+
 				
-				<div class="map-layer" data-timelinepost="<?php echo $post->ID;?>">
 
 					<div>
-						<?php $type_terms = wp_get_post_terms ($post->ID, 'country'); ?>
-						<?php foreach($type_terms as $term): ?>						
-							<span class="tag"><?php echo $term->name; ?></span>
-						<?php endforeach; ?>
-					</div>
-					<div>
-						<?php the_field('map_image');?>
+						<img src="<?php echo get_field('map_image')['sizes']['large'];?>"/>
 					</div>
 				</div>
 			<?php endwhile ?>
@@ -61,15 +64,17 @@
 			<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>
 				
 				<div class="source" data-timelinepost="<?php echo $post->ID;?>">
-					<div class='date'><?php echo get_field('date'); ?></div>
-					<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-					<?php the_content();?>
 					<div>
 						<?php $type_terms = wp_get_post_terms ($post->ID, 'country'); ?>
 						<?php foreach($type_terms as $term): ?>						
-							<span class="tag"><?php echo $term->name; ?></span>
+							<span class="tag <?php echo $term->slug;?>"><?php echo $term->name; ?></span>
 						<?php endforeach; ?>
 					</div>
+
+					<div class='date'><?php echo get_field('date'); ?></div>
+					<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+					<?php the_content();?>
+					
 
 				</div>
 

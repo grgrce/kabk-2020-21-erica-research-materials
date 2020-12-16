@@ -23,24 +23,24 @@ function update(sliderVal) {
 				nearestArticleBar = bar;
 			}
 		}
-
 		if (bar.dataset.type === 'maplayer') {
+			
 			if (!nearestMapLayerBar || dist < nearestMapLayerDist) {
 				nearestMapLayerDist = dist;
 				nearestMapLayerBar = bar;
 			}			
 		}
-	});	
-
-
+	});
 
 	const timelinepostArticle = parseInt(nearestArticleBar.dataset.timelinepost);
 	document.querySelectorAll('.source').forEach(el => {
 		el.classList.remove('visible');
 	});
+
 	const article = document.querySelector('.source[data-timelinepost="' + timelinepostArticle + '"');
 	article.classList.add('visible');
 
+	console.log(timelinepostArticle);
 
 
 	const timelinepostMapLayer = parseInt(nearestMapLayerBar.dataset.timelinepost);
@@ -48,7 +48,7 @@ function update(sliderVal) {
 		el.classList.remove('visible');
 	});
 	
-	console.log(timelinepostMapLayer);
+
 	const mapLayer = document.querySelector('.map-layer[data-timelinepost="' + timelinepostMapLayer + '"');
 	mapLayer.classList.add('visible');
 
