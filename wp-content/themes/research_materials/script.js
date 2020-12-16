@@ -18,14 +18,14 @@ function update(sliderVal) {
 		const dist = Math.abs(percentage - sliderVal);
 
 		if (bar.dataset.type === 'article') {
-			if (!nearestArticleBar || dist < nearestArticleDist) {
+			if (!nearestArticleBar || dist < nearestArticleDist && sliderVal > percentage) {
 				nearestArticleDist = dist;
 				nearestArticleBar = bar;
 			}
 		}
 		if (bar.dataset.type === 'maplayer') {
 			
-			if (!nearestMapLayerBar || dist < nearestMapLayerDist) {
+			if (!nearestMapLayerBar || dist < nearestMapLayerDist && sliderVal > percentage) {
 				nearestMapLayerDist = dist;
 				nearestMapLayerBar = bar;
 			}			
