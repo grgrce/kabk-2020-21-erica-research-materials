@@ -12,6 +12,7 @@
 
 
 <header>
-	<h1>A journalistic border</h1>
+	<h1>Artsakh is Karabakh</h1>
+	<h3>A study on a journalistic border</h3>
 </header>
 
