@@ -64,6 +64,7 @@
 
 
 	</section>
+	
 	<section id="articles">
 		
 		<!-- Loop over all the timeline posts and put them in the article section -->
@@ -72,17 +73,25 @@
 			<?php while($timeline_query->have_posts()): $timeline_query->the_post(); ?>
 				
 				<div class="source" data-timelinepost="<?php echo $post->ID;?>">
-					<div>
+
+				<div class="header-source">
+
+					<div class='date'><?php echo get_field('date'); ?></div>
+
+					<div class="country-tag">
 						<?php $type_terms = wp_get_post_terms ($post->ID, 'country'); ?>
 						<?php foreach($type_terms as $term): ?>						
 							<span class="tag <?php echo $term->slug;?>"><?php echo $term->name; ?></span>
 						<?php endforeach; ?>
 					</div>
 
-					<div class='date'><?php echo get_field('date'); ?></div>
-					<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
-					<?php the_content();?>
 					
+				</div>
+
+					<div class="preview">
+						<h1><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+						<?php the_content();?>
+					</div>
 
 				</div>
 
@@ -91,8 +100,8 @@
 
 		<?php endif; ?>
 	</section>
-	
-</main>
+
+
 
 <div id="timeline">
 
@@ -147,5 +156,7 @@
 		<?php endif; ?>	
 	</div>
 </div>
+
+</main>	
 
 <?php get_footer(); ?>

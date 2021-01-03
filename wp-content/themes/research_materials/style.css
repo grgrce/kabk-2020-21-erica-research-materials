@@ -1,8 +1,10 @@
 /* Theme Name: Reseach Materials */
 
+
+
 body {
-	background: #FFF;
-	font-family: sans-serif;
+	background: #838383;
+	font-family: 'Gelasio', regular-serif;
 	overflow: hidden;
 	height: 100vh;
 	display: flex;
@@ -10,12 +12,23 @@ body {
 	margin: 0;
 }
 
+
+
 * {
 	box-sizing: border-box;
 }
 
 header {
-	padding: 20px 20px 0 20px;
+	color: #FFF500;
+	margin: 16px 16px 8px 16px;
+	padding: 16px 24px 24px 24px;
+	/*background: #EEEEEE;*/
+	/*border: 1px solid #FFF500;*/
+	border-radius: 8px;
+}
+header:hover {
+	color:#000;
+	background: #FFF500;
 }
 
 h1 {
@@ -25,10 +38,11 @@ h1 {
 main {
 
 	display: grid;
-	grid-template-columns: 2fr 1fr;
+	grid-template-columns: repeat(3,minmax(0,1fr));
+	grid-template-rows: 1fr auto;
 	flex-grow: 1;
-	grid-gap: 20px;
-	padding: 20px;
+	grid-gap: 8px;
+	padding: 0 24px 24px 24px;
 }
 
 html {
@@ -37,42 +51,87 @@ html {
 }
 
 #maps {
-	border: 1px solid #000;
+	grid-column: span 2;
+	border: 1px solid #FFF500;
+	/*background: #eeee;*/
 	position: relative;
-	border-radius: 20px;
+	border-radius: 8px;
 
 }
 
 #timeline {
 	
-	height: 140px;
+	height: 80px;
 	grid-column: span 2;
-	padding: 0 20px 20px 20px;
+	padding: 0 0 0 0;
 	position: relative;
 }
 
 #timeline input {
 	position: absolute;
-	width: calc(100% - 40px);
+	background: rgba(0,0,0,0);
+	width: calc(100% );
 	display: block;
-	height: calc(100% - 20px);
+	height: calc(100% );
+	border-radius: 8px;
 	margin: 0;
+	-webkit-appearance: none;  /* Override default CSS styles */
+  	appearance: none;
+
+}
+#timeline input::-webkit-slider-runnable-track{
+	background: rgba(256,0,0,0.0);
+	height: 100%;
+	border-radius: 8px;
+}
+#timeline input::-webkit-slider-thumb{
+	-webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  border-radius: 8px;
+  cursor: pointer;
 }
 
+
+
 #articles {
+	grid-row: span 2;
 	padding: 20px;
 	overflow: auto;
-	border: 1px solid #000;
-	border-radius: 20px;
+	background:  linear-gradient(#ffff, #838383);
+	border: 1px solid #FFF500;
+	border-radius: 8px;
 }
 
 #articles div:nth-child(1) {
-	/* display: block; */
+	/*display: block;*/ 
 }
 
 #articles div {
-	/* display: none; */
+	/*display: none;*/
 
+}
+#articles::-webkit-scrollbar {
+    width: 0.6vw;
+    margin: 10px, 10px, 10px, 10px;
+}
+ 
+#articles::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    border-radius: 8px
+}
+ 
+#articles::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 8px;
+}
+.header-source{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	width: 100%;
 }
 
 .map-layer {
@@ -83,27 +142,50 @@ html {
 .map-layer {
 	position: absolute;
 	width: 50%;
+
 }
 .map-layer img {
-	width: 100%;
+	max-width: 100%;
+	
 }
 
 .map-layer.armenia {
 	position: absolute;
+	grid-column: 2;
 	left: 50%;
+
+}
+.map-layer.azerbaijan {
+	position: absolute;
+	grid-column: 1;
+	right: 50%;
+
 }
 
 .source {
 	display: none;
+	
 }
 .visible {
 	display: block;	
 }
-
+.preview{
+	background: rgba(0,0,0,0);
+	height: 20ch;
+	padding: 8px;
+}
+a:link{
+	color: #000;
+	text-decoration: none;
+}
+a:hover{
+	color: #FFF500;
+	text-decoration: none;
+}
 
 .bars {
-	border: 1px solid #000;	
-	border-radius: 20px;
+	border: 1px solid #FFF500;	
+	border-radius: 8px;
 	overflow: hidden;
 	position: relative;
 	height: 100%;
@@ -115,10 +197,14 @@ html {
 	position: absolute;
 	width: 0px;
 	top: 25%;
-	margin-left: -2px;
+	margin-left: 4px;
 	border-right: 4px solid #000;
+
 }
 
+.country-tag{
+
+}
 .tag {
 	font-weight: bold;
 }
