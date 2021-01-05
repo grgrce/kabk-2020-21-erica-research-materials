@@ -17,7 +17,7 @@
 	]);
 
 	$maps_timeline_query = new WP_Query([
-		'post_type' => ['timleine', 'map_layer'],
+		'post_type' => ['timleine', 'map_layer'], //wut
 		'order' => 'ASC',
 		'posts_per_page' => -1,
 		'meta_key' => 'date',

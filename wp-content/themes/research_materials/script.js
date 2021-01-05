@@ -33,14 +33,14 @@ function update(sliderVal) {
 				nearestArticleBar = bar;
 			}
 		}
-		if (bar.dataset.type === 'maplayer' && bar.classList.contains('armenia')) {	
+		if (bar.dataset.type === 'map_layer' && bar.classList.contains('armenia')) {	
 			if (!nearestArmeniaMapLayerBar || dist < nearestArmeniaMapLayerDist && sliderVal > percentage) {
 				nearestArmeniaMapLayerDist = dist;
 				nearestArmeniaMapLayerBar = bar;
 			}			
 		}
 
-		if (bar.dataset.type === 'maplayer' && bar.classList.contains('azerbaijan')) {	
+		if (bar.dataset.type === 'map_layer' && bar.classList.contains('azerbaijan')) {	
 			if (!nearestAzerbaijanMapLayerBar || dist < nearestAzerbaijanMapLayerDist && sliderVal > percentage) {
 				nearestAzerbaijanMapLayerDist = dist;
 				nearestAzerbaijanMapLayerBar = bar;
