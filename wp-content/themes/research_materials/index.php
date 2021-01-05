@@ -6,20 +6,20 @@
 	$maps_query = new WP_Query([
 		'post_type' => 'map_layer',
 		'order' => 'ASC',
-		'post_per_page' => -1,
+		'posts_per_page' => -1,
 	]);
 
 	// SELECT all the timeline posts from start to end (ascending)
 	$timeline_query = new WP_Query([
 		'post_type' => 'timeline',
 		'order' => 'ASC',
-		'post_per_page' => -1,
+		'posts_per_page' => -1,
 	]);
 
 	$maps_timeline_query = new WP_Query([
 		'post_type' => ['timleine', 'map_layer'],
 		'order' => 'ASC',
-		'post_per_page' => -1,
+		'posts_per_page' => -1,
 		'meta_key' => 'date',
 		'orderby' => 'meta_value_num',
 		'order' => 'ASC'

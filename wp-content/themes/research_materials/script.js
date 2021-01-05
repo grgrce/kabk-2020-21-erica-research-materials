@@ -1,3 +1,4 @@
+
 window.addEventListener('DOMContentLoaded', e => {
 	const rangeSlider = document.querySelector('#range-slider');
 	
@@ -6,6 +7,14 @@ window.addEventListener('DOMContentLoaded', e => {
 	});
 
 	update(rangeSlider.value);
+
+	document.querySelectorAll('.about-toggle').forEach(toggle=>{
+		toggle.addEventListener('click', e=>{	
+			document.body.classList.toggle('about-open');			
+		});
+	});
+
+
 
 });
 
