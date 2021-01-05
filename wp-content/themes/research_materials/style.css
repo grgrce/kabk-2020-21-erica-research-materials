@@ -58,6 +58,7 @@ html {
 
 #maps {
 	grid-column: span 2;
+	grid-gap: auto;
 	border: 1px solid #FFF500;
 	/*background: #eeee;*/
 	position: relative;
@@ -148,11 +149,11 @@ html {
 .map-layer {
 	position: absolute;
 	width: 50%;
-
+	max-height: 100%;
 }
 .map-layer img {
 	max-width: 100%;
-	
+	/*background: blue;*/
 }
 
 .map-layer.armenia {
@@ -161,12 +162,7 @@ html {
 	left: 50%;
 
 }
-.map-layer.azerbaijan {
-	position: absolute;
-	grid-column: 1;
-	right: 50%;
 
-}
 
 .source {
 	display: none;
