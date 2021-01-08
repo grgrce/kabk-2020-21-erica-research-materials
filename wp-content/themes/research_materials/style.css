@@ -3,8 +3,8 @@
 
 
 body {
-	background: #838383;
-	font-family: 'Gelasio', regular-serif;
+	background: #F8F8F8;
+	/*font-family: 'Gelasio', regular-serif;*/
 	overflow: hidden;
 	height: 100vh;
 	display: flex;
@@ -33,7 +33,7 @@ body.about-open main {
 }
 
 header {
-	color: #FFF500;
+	color: #000;
 	
 	padding: 16px 24px 24px 24px;
 	height: 80px;
@@ -74,13 +74,13 @@ main {
 }
 
 html {
-	--azerbaijan: green;
-	--armenia: red;
+	--azerbaijan: #EDFF22;
+	--armenia: #CBC2FF;
 }
 
 #maps {
 	grid-column: span 2;
-	grid-gap: auto;
+	/*grid-gap: auto;*/
 	border: 1px solid #FFF500;
 	/*background: #eeee;*/
 	position: relative;
@@ -109,16 +109,16 @@ html {
 
 }
 #timeline input::-webkit-slider-runnable-track{
-	background: rgba(256,0,0,0.0);
+	/*background: rgba(256,0,0,0.5);*/
 	height: 100%;
 	border-radius: 8px;
 }
 #timeline input::-webkit-slider-thumb{
 	-webkit-appearance: none;
   appearance: none;
-  width: 10px;
+  width: 7px;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,1);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -129,7 +129,7 @@ html {
 	grid-row: span 1;
 	padding: 20px;
 	overflow: auto;
-	background:  linear-gradient(#ffff, #838383);
+	/*background:  linear-gradient(#ffff, #838383);*/
 	border: 1px solid #FFF500;
 	border-radius: 8px;
 }
