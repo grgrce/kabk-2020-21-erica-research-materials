@@ -43,6 +43,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
+	border-bottom: 2px solid #000
 }
 
 h3 {
@@ -81,8 +82,7 @@ html {
 #maps {
 	grid-column: span 2;
 	/*grid-gap: auto;*/
-	border: 1px solid #FFF500;
-	/*background: #eeee;*/
+	/*border: 1px solid #C0C0C0;*/
 	position: relative;
 	border-radius: 8px;
 
@@ -98,7 +98,7 @@ html {
 
 #timeline input {
 	position: absolute;
-	background: rgba(0,0,0,0);
+	/*background: rgba(0,0,0,0);*/
 	width: calc(100% );
 	display: block;
 	height: calc(100% );
@@ -130,7 +130,7 @@ html {
 	padding: 20px;
 	overflow: auto;
 	/*background:  linear-gradient(#ffff, #838383);*/
-	border: 1px solid #FFF500;
+	/*border: 1px solid #C0C0C0;*/
 	border-radius: 8px;
 }
 
@@ -209,7 +209,7 @@ a:hover{
 }
 
 .bars {
-	border: 1px solid #FFF500;	
+	border: 1px solid #C0C0C0;	
 	border-radius: 8px;
 	overflow: hidden;
 	position: relative;
@@ -220,7 +220,6 @@ a:hover{
 .bars div {
 	height: 50%;
 	position: absolute;
-	width: 0px;
 	top: 25%;
 	margin-left: 4px;
 	border-right: 4px solid #000;
@@ -228,19 +227,20 @@ a:hover{
 }
 
 .country-tag{
-
+	border-radius: 8px;
 }
 .tag {
 	font-weight: bold;
 }
 
 .tag.azerbaijan {
-	color: var(--azerbaijan);
+	background: var(--azerbaijan);
 }
 
 .tag.armenia {
-	color: var(--armenia);
+	background: var(--armenia);
 }
+
 
 
 

@@ -84,8 +84,7 @@
 							<span class="tag <?php echo $term->slug;?>"><?php echo $term->name; ?></span>
 						<?php endforeach; ?>
 					</div>
-
-					
+	
 				</div>
 
 					<div class="preview">
