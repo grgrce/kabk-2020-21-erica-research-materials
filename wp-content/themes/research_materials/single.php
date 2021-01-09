@@ -4,15 +4,15 @@
 <div><?php the_content(); ?></div>
 
 <div>
-	Author: <?php the_field('author_name'); ?>
+	<?php the_field('author_name'); ?>
 </div>
 
 <div>
-	Position: <?php the_field('author_position'); ?>
+	<?php the_field('author_position'); ?>
 </div>
 
 <div>
-	URL: <a href="<?php the_field('url'); ?>">this is the link you can call it whatever you want</a>
+	<a href="<?php the_field('url'); ?>"></a>
 </div>
 
 <br>
