@@ -44,6 +44,20 @@ body.about-open #about {
 	align-content: space-between;
 	align-items: baseline;
 }
+#about::-webkit-scrollbar {
+    width: 0.6vw;
+    margin: 10px, 10px, 10px, 10px;
+}
+ 
+#about::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    border-radius: 8px
+}
+ 
+#about::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 8px;
+}
 
 body.about-open main {
 	/* display: none; */
