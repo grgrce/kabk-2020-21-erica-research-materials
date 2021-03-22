@@ -16,8 +16,8 @@
 
 <header>
 	<div>
-		<h1>Artsakh is Karabakh</h1>
-		<h3>A study on a journalistic border</h3>
+		<h1>Truths, tales and territories</h1>
+		<h3>Information warfare and ethics of puclishing during the second Nagorno Karabakh war</h3>
 	</div>
 	<div>
 		<h3 class="about-toggle">About</h3>

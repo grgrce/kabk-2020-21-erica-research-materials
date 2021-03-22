@@ -56,6 +56,12 @@
 				?>
 				<div class="<?php echo implode(' ', $classes);?>" data-timelinepost="<?php echo $post->ID;?>">
 					<div>
+						<div class="map-country-tag">
+							<?php $type_terms = wp_get_post_terms ($post->ID, 'country'); ?>
+							<?php foreach($type_terms as $term): ?>						
+								<span class="tag <?php echo $term->slug;?>"><?php echo $term->name; ?></span>
+							<?php endforeach; ?>
+						</div>
 						<img src="<?php echo get_field('map_image')['sizes']['large'];?>"/>
 					</div>
 				</div>
@@ -76,7 +82,10 @@
 
 				<div class="header-source">
 
-					<div class='date'><?php echo get_field('date'); ?></div>
+					<div class='date'>
+						<?php echo get_field('date'); ?>
+
+					</div>
 
 					<div class="country-tag">
 						<?php $type_terms = wp_get_post_terms ($post->ID, 'country'); ?>
